@@ -1,7 +1,4 @@
 export class Api {
-  /*
-    Отлично!: Параметры запросов передаются в конструктор, а не дублируются в каждом методе.
-   */
   constructor(config) {
     this.url = config.baseUrl;
     this.headers = config.headers;
@@ -11,9 +8,6 @@ export class Api {
     return fetch(`${this.url}/cards`, {
       headers: this.headers
     })
-      /*
-        Можно лучше: Проверку ответа можно вынести в отдельный метод, чтобы не дублировать при каждом запросе.
-       */
       .then(res => {
         if (res.ok) {
           return res.json();
