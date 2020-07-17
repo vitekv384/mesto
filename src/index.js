@@ -1,3 +1,11 @@
+import initialCards from './js/InitialCards';
+import { Api } from './classes/Api';
+import { Card } from './classes/Card';
+import { CardList } from './classes/CardList';
+import { FormValidator } from './classes/FormValidator';
+import { Popup } from './classes/Popup';
+import { UserInfo } from './classes/UserInfo';
+import "./pages/index.css";
 (function () {
   // Элементы DOM
   const placesList = document.querySelector('.places-list');

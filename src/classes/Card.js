@@ -1,4 +1,4 @@
-class Card {
+export class Card {
   constructor(title, link, handleImage, ownerId, cardId, likes, userId, api) {
     this._title = title;
     this._link = link;
