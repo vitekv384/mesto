@@ -17,16 +17,6 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: "babel-loader",
-            options: {
-                "presets": [
-                    "@babel/preset-env",
-                    {
-                        "plugins": [
-                            "@babel/plugin-proposal-class-properties"
-                        ]
-                    }
-                ],
-            },
         },
         {
             test: /\.(png|jpg|gif|ico|svg)$/,
@@ -34,10 +24,14 @@ module.exports = {
                 {
                     loader: 'file-loader',
                     options: {
-                        name: "./images/[name].[ext]",
+                        name: './images/[name].[ext]',
                         esModule: false,
                     },
 
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {}
                 },
             ]
         },

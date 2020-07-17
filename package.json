@@ -45,5 +45,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.4.1"
-  }
+  },
+  "browserslist":[
+    "defaults"
+  ]
 }
