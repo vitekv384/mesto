@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(form) {
     this._form = form;
     this._inputs = Array.from(this._form.querySelectorAll('input'));
@@ -31,20 +31,8 @@ class FormValidator {
   };
 
   _setSubmitButtonState = () => {
-    /*
-      Можно лучше: Код можно упростить до:
-      if (!this._inputs.every(el => this._checkInputValidity(el))) {
-        this._button.setAttribute("disabled", "");
-      } else {
-        this._button.removeAttribute("disabled");
-      }
-     */
 
     let valid;
-    /**
-     * Можно лучше:
-     * const valid = this._inputs.reduce((acc, el) => this._checkInputValidity(el) && acc, true);
-     */
     if (this._inputs.reduce((acc, el) => this._checkInputValidity(el) && acc, true)
     ) {
       valid = true;
@@ -58,14 +46,6 @@ class FormValidator {
 
   setEventListeners = () => {
     this._inputs.forEach((input) => {
-      /*
-        Можно лучше: В качестве второго параметра метода addEventListener следует использовать ранее объявленную функцию.
-        Код имеет свойство расширяться и повторно использоваться.
-        Поэтому функцию из второго параметра слушателя следует вынести и декларировать отдельно.
-        А в методе addEventListener только ее вызывать. Это облегчает как читаемость кода,
-        так и его повторное использование в рамках данного или другого проекта.
-        Внутри обработчика input можно получить через event.target.
-       */
       input.addEventListener('input', () => this._handleErrorElement(input));
     });
   };
