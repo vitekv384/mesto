@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -16,17 +16,7 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: "babel-loader",
-            options: {
-                "presets": [
-                    "@babel/preset-env",
-                    {
-                        "plugins": [
-                            "@babel/plugin-proposal-class-properties"
-                        ]
-                    }
-                ],
-            },
+            loader: 'babel-loader',
         },
         {
             test: /\.(png|jpg|gif|ico|svg)$/,
@@ -34,10 +24,14 @@ module.exports = {
                 {
                     loader: 'file-loader',
                     options: {
-                        name: "./images/[name].[ext]",
+                        name: './images/[name].[ext]',
                         esModule: false,
                     },
 
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {}
                 },
             ]
         },
@@ -47,7 +41,15 @@ module.exports = {
         },
         {
             test: /\.css$/,
-            use: [(isDev ? 'style-loader' : MiniCssExtractPlugin.loader), 'css-loader', 'postcss-loader']
+            use: [(isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
+            {
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 2
+                }
+            },
+                'postcss-loader'
+            ]
         }
         ]
     },
